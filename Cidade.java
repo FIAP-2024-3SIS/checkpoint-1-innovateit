@@ -100,6 +100,10 @@ public class Cidade {
         this.rodoviaria = rodoviaria;
     }
 
+    public List<Cidade> getListaCidades() {
+        return listaCidades;
+    }
+    
     @Override
     public String toString() {
         return "Index do Objeto na lista = " + String.valueOf(this.id - 1) + "\nId cidade = " + this.id + "\nNome = " + this.nome + "\nRodoviária = " + this.rodoviaria + "\n\n";
