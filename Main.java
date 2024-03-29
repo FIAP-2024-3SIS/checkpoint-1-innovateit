@@ -9,7 +9,7 @@ public class Main {
         cidade.listarCidades();
 
         //Pegando a cidade da lista pelo seu index
-        Cidade cidadeDaLista = cidade.listarCidades().get(0);
+        Cidade cidadeDaLista = cidade.getListaCidades().get(0);
         
         //Alterando a cidade da lista conforme index
         cidadeDaLista.setNome("NomeAlterado");
