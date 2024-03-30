@@ -8,19 +8,15 @@ public class Onibus {
 
     private int id;
     private int qtdAssentos;
-    private double velociadeMedia;
+    private double velocidadeMedia;
     private List<Onibus> listaOnibus = new ArrayList<>();
-
-    public int getId() {
-        return id;
-    }
 
     public Onibus() {
     }
 
-    public Onibus(int qtdAssentos, double velociadeMedia) {
+    public Onibus(int qtdAssentos, double velocidadeMedia) {
         this.qtdAssentos = qtdAssentos;
-        this.velociadeMedia = velociadeMedia;
+        this.velocidadeMedia = velocidadeMedia;
     }
 
     public List<Onibus> listarOnibus(){
@@ -36,12 +32,12 @@ public class Onibus {
         return listaOnibus;
     }
 
-    public void cadastrarOnibus(int qtdAssentos, double velociadeMedia) throws Exception {
+    public void cadastrarOnibus(int qtdAssentos, double velocidadeMedia) throws Exception {
         validaQtdAssentos(qtdAssentos, "Cadastrar Ônibus");
-        validaVelocidadeMedia(velociadeMedia, "Cadastrar Ônibus");
+        validaVelocidadeMedia(velocidadeMedia, "Cadastrar Ônibus");
 
 
-        Onibus onibus = new Onibus(qtdAssentos, velociadeMedia);
+        Onibus onibus = new Onibus(qtdAssentos, velocidadeMedia);
         //Criando o ID com size da lista + 1
         onibus.setId( listaOnibus.size() + 1 );
 
@@ -66,7 +62,7 @@ public class Onibus {
 
     public void alterarOnibus(Onibus onibus) throws Exception {
         validaQtdAssentos(qtdAssentos, "Alterar Ônibus");
-        validaVelocidadeMedia(velociadeMedia, "Alterar Ônibus");
+        validaVelocidadeMedia(velocidadeMedia, "Alterar Ônibus");
 
         for( Onibus onibusDaLista : listaOnibus ){
             if( onibusDaLista.getId() == onibus.getId() ){
@@ -111,6 +107,10 @@ public class Onibus {
         }
     }
 
+    public int getId() {
+        return id;
+    }
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -123,12 +123,12 @@ public class Onibus {
         this.qtdAssentos = qtdAssentos;
     }
 
-    public double getVelociadeMedia() {
-        return velociadeMedia;
+    public double getVelocidadeMedia() {
+        return velocidadeMedia;
     }
 
-    public void setVelociadeMedia(double velociadeMedia) {
-        this.velociadeMedia = velociadeMedia;
+    public void setVelocidadeMedia(double velocidadeMedia) {
+        this.velocidadeMedia = velocidadeMedia;
     }
 
     public List<Onibus> getListaOnibus() {
@@ -137,6 +137,6 @@ public class Onibus {
 
     @Override
     public String toString() {
-        return "Index do Objeto na lista = " + String.valueOf(this.id - 1) + "\nId Ônibus = " + this.id + "\nQuantidade de assentos = " + this.qtdAssentos + "\nVelocidade média = " + this.velociadeMedia + "\n\n";
+        return "Index do Objeto na lista = " + String.valueOf(this.id - 1) + "\nId Ônibus = " + this.id + "\nQuantidade de assentos = " + this.qtdAssentos + "\nVelocidade média = " + this.velocidadeMedia + "\n\n";
     }
 }
