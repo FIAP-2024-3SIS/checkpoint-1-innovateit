@@ -97,7 +97,7 @@ public class Viagem {
 	}
 
 	public void calcularTempo(Viagem viagem) {
-		double resultado = viagem.distancia / viagem.getOnibus().getVelociadeMedia();
+		double resultado = viagem.distancia / viagem.getOnibus().getVelocidadeMedia();
 		horaTempoViagem = (int) resultado;
 		double qtdMinutos = resultado - horaTempoViagem;
 		minTempoViagem = qtdMinutos * 60;
