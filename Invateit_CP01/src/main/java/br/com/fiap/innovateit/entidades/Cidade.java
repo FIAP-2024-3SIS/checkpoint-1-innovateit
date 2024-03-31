@@ -49,7 +49,7 @@ public class Cidade {
     }
 
     public void excluirCidade(int id) throws Exception {
-        if(id <= 0){
+        if(id < 0){
             throw new Exception("Id da cidade inválido, certifique-se de que o ID da cidade informado para exclusão seja válido e maior do que zero");
         }
 

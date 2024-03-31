@@ -10,8 +10,8 @@ public class Viagem {
 	private int qtdParadas;
 	private double tempoParada;
 	private double distancia;
-	private double horaTempoViagem;
-	private double minTempoViagem;
+	private int horaTempoViagem;
+	private int minTempoViagem;
 	private Cidade origem;
 	private Cidade destino;
 	private Onibus onibus;
@@ -44,6 +44,7 @@ public class Viagem {
 		validaOnibus(onibus, "Cadastrar Viagem");
 
 		Viagem viagem = new Viagem(qtdParadas, qtdParadas, tempoParada, distancia, origem, destino, onibus);
+		this.calcularTempo(viagem);
 		viagem.setId(listaViagem.size() + 1);
 
 		listaViagem.add(viagem);
@@ -61,6 +62,7 @@ public class Viagem {
 		for (Viagem viagemDaLista : listaViagem) {
 			if (viagemDaLista.getId() == viagem.getId()) {
 				listaViagem.remove(viagemDaLista);
+				this.calcularTempo(viagem);
 				listaViagem.add(viagem);
 			}
 		}
@@ -100,7 +102,16 @@ public class Viagem {
 		double resultado = viagem.distancia / viagem.getOnibus().getVelocidadeMedia();
 		horaTempoViagem = (int) resultado;
 		double qtdMinutos = resultado - horaTempoViagem;
-		minTempoViagem = qtdMinutos * 60;
+		minTempoViagem = (int) qtdMinutos * 60;
+
+		if (viagem.getQtdParadas() > 0 && viagem.getTempoParada() > 0) {
+			int tempoParada = (int) (viagem.getQtdParadas() * viagem.getTempoParada());
+			int totalMinutos = tempoParada + minTempoViagem;
+			
+			int totalHoras = (int) totalMinutos/60;
+			horaTempoViagem += totalHoras;
+			minTempoViagem = totalMinutos - (totalHoras * 60);
+		}
 
 		viagem.setHoraTempoViagem(horaTempoViagem);
 		viagem.setMinTempoViagem(minTempoViagem);
@@ -114,7 +125,7 @@ public class Viagem {
 	}
 
 	private void validaTempoParada(double tempoParada, String nomeAcao) throws Exception {
-		if (tempoParada <= 0) {
+		if (tempoParada < 0) {
 			throw new Exception("Tempo da parada não pode ser menor ou igual a 0 . Processo " + nomeAcao
 					+ " não pode ser executado.");
 		}
@@ -122,8 +133,8 @@ public class Viagem {
 
 	private void validaDistancia(double distancia, String nomeAcao) throws Exception {
 		if (distancia <= 0) {
-			throw new Exception(
-					"Distância da viagem não pode ser negativa ou igual a zero. Processo " + nomeAcao + " não pode ser executado.");
+			throw new Exception("Distância da viagem não pode ser negativa ou igual a zero. Processo " + nomeAcao
+					+ " não pode ser executado.");
 		}
 	}
 
@@ -181,7 +192,7 @@ public class Viagem {
 		return horaTempoViagem;
 	}
 
-	public void setHoraTempoViagem(double horaTempoViagem) {
+	public void setHoraTempoViagem(int horaTempoViagem) {
 		this.horaTempoViagem = horaTempoViagem;
 	}
 
@@ -189,7 +200,7 @@ public class Viagem {
 		return minTempoViagem;
 	}
 
-	public void setMinTempoViagem(double minTempoViagem) {
+	public void setMinTempoViagem(int minTempoViagem) {
 		this.minTempoViagem = minTempoViagem;
 	}
 

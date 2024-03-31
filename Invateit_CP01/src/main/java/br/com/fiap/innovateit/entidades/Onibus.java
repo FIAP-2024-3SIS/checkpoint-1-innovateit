@@ -61,9 +61,11 @@ public class Onibus {
     }
 
     public void alterarOnibus(Onibus onibus) throws Exception {
-        validaQtdAssentos(qtdAssentos, "Alterar Ônibus");
-        validaVelocidadeMedia(velocidadeMedia, "Alterar Ônibus");
-
+        validaQtdAssentos(onibus.getQtdAssentos(), "Alterar Ônibus");
+        validaVelocidadeMedia(onibus.getVelocidadeMedia(), "Alterar Ônibus");
+        
+       
+        
         for( Onibus onibusDaLista : listaOnibus ){
             if( onibusDaLista.getId() == onibus.getId() ){
                 listaOnibus.remove(onibusDaLista);
